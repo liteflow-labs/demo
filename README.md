@@ -127,5 +127,5 @@ Your application includes default navigation, metadata, and wallets that can be 
 Make sure to have the envs in the file `.env.production`.
 
 ```bash
-docker build -t IMAGE_TAG --platform linux/amd64 --push .
+docker build -t registry.digitalocean.com/nft-marketplace/marketplace-demo --platform linux/amd64 --push .
 ```
