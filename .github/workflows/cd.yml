@@ -1,0 +1,42 @@
+name: CD
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: registry.digitalocean.com/nft-marketplace
+          username: ${{ secrets.DO_API_TOKEN }}
+          password: ${{ secrets.DO_API_TOKEN }}
+      - uses: docker/setup-buildx-action@v3
+      - uses: SpicyPizza/create-envfile@v2.0
+        with:
+          file_name: .env.production
+          envkey_DATABASE_URL: ${{secrets.DATABASE_URL}}
+          envkey_EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+          envkey_LITEFLOW_WEBHOOK_SECRET: ${{secrets.LITEFLOW_WEBHOOK_SECRET}}
+
+          envkey_EMAIL_FROM: ${{vars.EMAIL_FROM}}
+          envkey_EMAIL_HOST: ${{vars.EMAIL_HOST}}
+          envkey_EMAIL_PORT: ${{vars.EMAIL_PORT}}
+          envkey_EMAIL_USERNAME: ${{vars.EMAIL_USERNAME}}
+          envkey_NEXT_PUBLIC_ALCHEMY_API_KEY: ${{vars.NEXT_PUBLIC_ALCHEMY_API_KEY}}
+          envkey_NEXT_PUBLIC_BASE_URL: ${{vars.NEXT_PUBLIC_BASE_URL}}
+          envkey_NEXT_PUBLIC_BUGSNAG_API_KEY: ${{vars.NEXT_PUBLIC_BUGSNAG_API_KEY}}
+          envkey_NEXT_PUBLIC_ENVIRONMENT: ${{vars.NEXT_PUBLIC_ENVIRONMENT}}
+          envkey_NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{vars.NEXT_PUBLIC_GA_MEASUREMENT_ID}}
+          envkey_NEXT_PUBLIC_LITEFLOW_API_KEY: ${{vars.NEXT_PUBLIC_LITEFLOW_API_KEY}}
+          envkey_NEXT_PUBLIC_MAGIC_API_KEY: ${{vars.NEXT_PUBLIC_MAGIC_API_KEY}}
+          envkey_NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID: ${{vars.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}}
+          envkey_NODE_TLS_REJECT_UNAUTHORIZED: ${{vars.NODE_TLS_REJECT_UNAUTHORIZED}}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: registry.digitalocean.com/nft-marketplace/marketplace-demo
