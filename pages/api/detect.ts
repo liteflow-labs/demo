@@ -11,7 +11,7 @@ const client = new Pool({
 })
 
 export default async function detect(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
   res.setHeader('Cache-Control', 'public, max-age=60')
