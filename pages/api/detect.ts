@@ -15,7 +15,8 @@ export default async function detect(
   res: NextApiResponse,
 ): Promise<void> {
   res.setHeader('Cache-Control', 'public, max-age=60')
-  const domain = req.headers['x-forwarded-host'] || req.headers['host']
+  // const domain = req.headers['x-forwarded-host'] || req.headers['host']
+  const domain = 'demo-marketplace.liteflow.com'
   const {
     rows: [organization],
   } = await client.query<{
@@ -27,8 +28,8 @@ export default async function detect(
     hasLazyMint: boolean
     metadata: any
   }>(
-    `SELECT id, name, domain, "maxRoyaltiesPerTenThousand", "offerValiditySeconds", "hasLazyMint", metadata 
-      FROM organization."Organization" 
+    `SELECT id, name, domain, "maxRoyaltiesPerTenThousand", "offerValiditySeconds", "hasLazyMint", metadata
+      FROM organization."Organization"
       WHERE domain = $1 LIMIT 1;`,
     [domain],
   )
