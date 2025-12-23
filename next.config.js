@@ -18,6 +18,8 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    loader: 'custom',
+    loaderFile: './image-loader.ts',
   },
   webpack: (config, options) => {
     if (!options.isServer) {
