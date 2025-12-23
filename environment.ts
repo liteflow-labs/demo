@@ -141,7 +141,7 @@ export type Environment = {
 export const EnvironmentContext = createContext<Environment>({} as Environment)
 
 const getEnvironment = async (
-  req: NextIncomingMessage | undefined,
+  _req: NextIncomingMessage | undefined,
 ): Promise<Environment> => {
   invariant(process.env.NEXT_PUBLIC_BASE_URL, 'Base url is not defined')
   invariant(process.env.NEXT_PUBLIC_LITEFLOW_API_KEY, 'API key is not defined')
@@ -149,14 +149,22 @@ const getEnvironment = async (
     process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
     'Wallet connect project id is not defined',
   )
-  const host = req
-    ? `${req.headers['x-forwarded-proto'] || 'https'}://${
-        req.headers['x-forwarded-host'] || req.headers['host']
-      }`
-    : window.location.origin
-  const response = await fetch(`${host}/api/detect`, {
-    headers: { 'Content-type': 'application/json' },
-  })
+  // const host = req
+  //   ? `${req.headers['x-forwarded-proto'] || 'https'}://${
+  //       req.headers['x-forwarded-host'] || req.headers['host']
+  //     }`
+  //   : window.location.origin
+  // const response = await fetch(`${host}/api/detect`, {
+  //   headers: { 'Content-type': 'application/json' },
+  // })
+  // const {
+  //   metadata,
+  //   id,
+  //   domain,
+  //   maxRoyaltiesPerTenThousand,
+  //   offerValiditySeconds,
+  //   hasLazyMint,
+  // } = await response.json()
   const {
     metadata,
     id,
@@ -164,7 +172,86 @@ const getEnvironment = async (
     maxRoyaltiesPerTenThousand,
     offerValiditySeconds,
     hasLazyMint,
-  } = await response.json()
+  } = {
+    metadata: {
+      LOGO: 'https://demo.liteflow.com/logo.svg',
+      FAVICON: 'https://demo.liteflow.com/favicon.ico',
+      POINTFI: {
+        FAVICON:
+          'https://liteflow.mypinata.cloud/ipfs/QmYue8FWCjgyPguo3y8AH76yFjLZ98CQHA17PLRaWEzN8f',
+        META_TITLE: 'PointFi Demo',
+        META_KEYWORDS: 'pointfi, blockchain, quest',
+        META_DESCRIPTION: 'PointFi Demo by Liteflow',
+        LIGHTLINK_API_KEY: 'iHMBRLdxlk8N5eiVRo4NG3QGaRozn0f954QGgkY7',
+        META_COMPANY_NAME: 'Liteflow',
+        LIGHTLINK_PROJECT_BADGE: '65d2b20decbb1cc9da111148',
+        LIGHTLINK_PROJECT_POINT: '668b5851427f49613eec1100',
+      },
+      HOME_USERS: [
+        '0x4b595014f7b45789c3f4e79324ae6d8090a6c8b5',
+        '0x4f379eb8bf6c83fa3aabf27a31be94d825e5de06',
+        '0x8533f3ffe30c9cf449cc112850e7ec815070509d',
+        '0x6da89d36ba7cd6c371629b0724c2e17abf4049ee',
+        '0x09ea03548b97aa045043ff55f5bd9505f2f135eb',
+      ],
+      META_TITLE: 'Acme NFT Marketplace',
+      BRAND_COLOR: '#245bff',
+      HOME_TOKENS: null,
+      HOME_BANNERS: [
+        {
+          image:
+            'https://liteflow.mypinata.cloud/ipfs/QmXGtuDqUSSE29sqVuj2umKhMpysnmGUnWK9Zhe5NpZdWn',
+          title: 'Explore Quests',
+          button: {
+            href: 'https://quests-demo.liteflow.com/',
+            text: 'Explore Quests',
+            isExternal: true,
+          },
+          content: "Check out Liteflow's Questing Demo Platform",
+          textColor: '#000000',
+        },
+        {
+          image:
+            'https://liteflow.mypinata.cloud/ipfs/QmXVDhTYqW4jNuYvngAT1Pp7bNYkiaEzUjguRyrZnNd7YF',
+          title: 'Explore NFT Drop',
+          button: {
+            href: 'https://drop-demo.liteflow.com/',
+            text: 'Explore NFT Drop',
+            isExternal: true,
+          },
+          content: "Check out Liteflow's NFT Drop Demo Platform",
+          textColor: '',
+        },
+      ],
+      REPORT_EMAIL: 'contact@liteflow.com',
+      META_KEYWORDS: 'NFT, marketplace, platform, blockchain, liteflow',
+      FEATURED_TOKEN: [
+        '8453-0xe5bae830618ff33d4e0d38254708176417326dd4-3316',
+        '56-0xd5571e88725270e1a000b39e37070d349318f1c7-79',
+        '8453-0x6502820f3f035c7a9fc0ebd3d74a0383306c5137-6573',
+        '1-0x59325733eb952a92e069c87f0a6168b29e80627f-8802',
+      ],
+      HOME_COLLECTIONS: [
+        '137-0x9bc1c6b366db1518bd9ccc19a44605479c7c7762',
+        '8453-0xe5bae830618ff33d4e0d38254708176417326dd4',
+        '56-0xd5571e88725270e1a000b39e37070d349318f1c7',
+        '8453-0x6502820f3f035c7a9fc0ebd3d74a0383306c5137',
+        '137-0xe3f1464cb51d699b4d357fdb0573cfcfa33e112e',
+        '1-0xe1dc516b1486aba548eecd2947a11273518434a4',
+        '1890-0x8b53a8565b86a9df708b800b85024166a1960221',
+        '1890-0xe9f3682230a7a645812de614bc1f4eb23c3061e5',
+        '1-0x59325733eb952a92e069c87f0a6168b29e80627f',
+        '137-0x31259803ec8ec2b45a5ec73b172c2dad8ff076bf',
+      ],
+      META_DESCRIPTION: 'Acme NFT Marketplace',
+      META_COMPANY_NAME: 'Acme, Inc.',
+    },
+    id: 'efffaf7c-42e8-4ed3-a097-7353bcea83a8',
+    domain: 'marketplace-demo.liteflow.com',
+    maxRoyaltiesPerTenThousand: 3000,
+    offerValiditySeconds: 2419200,
+    hasLazyMint: true,
+  }
   return {
     // Base configuration
     LITEFLOW_API_KEY: id || process.env.NEXT_PUBLIC_LITEFLOW_API_KEY,
@@ -317,18 +404,18 @@ const getEnvironment = async (
     MAGIC_API_KEY: process.env.NEXT_PUBLIC_MAGIC_API_KEY,
     ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     // Home page configuration
-    HOME_BANNERS: metadata.HOME_BANNERS || [],
-    FEATURED_TOKEN: metadata.FEATURED_TOKEN || [],
-    HOME_COLLECTIONS: metadata.HOME_COLLECTIONS || [],
-    HOME_USERS: metadata.HOME_USERS || [],
-    HOME_TOKENS: metadata.HOME_TOKENS || [],
+    HOME_BANNERS: metadata?.HOME_BANNERS || [],
+    FEATURED_TOKEN: metadata?.FEATURED_TOKEN || [],
+    HOME_COLLECTIONS: metadata?.HOME_COLLECTIONS || [],
+    HOME_USERS: metadata?.HOME_USERS || [],
+    HOME_TOKENS: metadata?.HOME_TOKENS || [],
     // SEO Configuration
     META_COMPANY_NAME: metadata?.META_COMPANY_NAME || 'Liteflow',
     META_TITLE: metadata?.META_TITLE || 'Acme NFT Marketplace',
     META_DESCRIPTION: metadata?.META_DESCRIPTION || '',
     META_KEYWORDS: metadata?.META_KEYWORDS || '',
     // NFT Mint Behavior
-    LAZYMINT: hasLazyMint,
+    LAZYMINT: hasLazyMint || false,
   }
 }
 
