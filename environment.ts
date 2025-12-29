@@ -174,8 +174,8 @@ const getEnvironment = async (
     hasLazyMint,
   } = {
     metadata: {
-      LOGO: 'https://demo.liteflow.com/logo.svg',
-      FAVICON: 'https://demo.liteflow.com/favicon.ico',
+      LOGO: 'https://marketplace-demo.liteflow.com/logo.svg',
+      FAVICON: 'https://marketplace-demo.liteflow.com/favicon.ico',
       POINTFI: {
         FAVICON:
           'https://liteflow.mypinata.cloud/ipfs/QmYue8FWCjgyPguo3y8AH76yFjLZ98CQHA17PLRaWEzN8f',
