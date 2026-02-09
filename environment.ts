@@ -178,7 +178,7 @@ const getEnvironment = async (
       FAVICON: 'https://marketplace-demo.liteflow.com/favicon.ico',
       POINTFI: {
         FAVICON:
-          'https://liteflow.mypinata.cloud/ipfs/QmYue8FWCjgyPguo3y8AH76yFjLZ98CQHA17PLRaWEzN8f',
+          'https://liteflow.mypinata.cloud/ipfs/QmYue8FWCjgyPguo3y8AH76yFjLZ98CQHA17PLRaWEzN8f?pinataGatewayToken=r-RLfok_UsY8TBbFYoTG-EPsERfYA638NHCcjSkuwdM9wB_H878XExRL425X_Anu',
         META_TITLE: 'PointFi Demo',
         META_KEYWORDS: 'pointfi, blockchain, quest',
         META_DESCRIPTION: 'PointFi Demo by Liteflow',
@@ -200,7 +200,7 @@ const getEnvironment = async (
       HOME_BANNERS: [
         {
           image:
-            'https://liteflow.mypinata.cloud/ipfs/QmXGtuDqUSSE29sqVuj2umKhMpysnmGUnWK9Zhe5NpZdWn',
+            'https://liteflow.mypinata.cloud/ipfs/QmXGtuDqUSSE29sqVuj2umKhMpysnmGUnWK9Zhe5NpZdWn?pinataGatewayToken=r-RLfok_UsY8TBbFYoTG-EPsERfYA638NHCcjSkuwdM9wB_H878XExRL425X_Anu',
           title: 'Explore Quests',
           button: {
             href: 'https://quests-demo.liteflow.com/',
@@ -212,7 +212,7 @@ const getEnvironment = async (
         },
         {
           image:
-            'https://liteflow.mypinata.cloud/ipfs/QmXVDhTYqW4jNuYvngAT1Pp7bNYkiaEzUjguRyrZnNd7YF',
+            'https://liteflow.mypinata.cloud/ipfs/QmXVDhTYqW4jNuYvngAT1Pp7bNYkiaEzUjguRyrZnNd7YF?pinataGatewayToken=r-RLfok_UsY8TBbFYoTG-EPsERfYA638NHCcjSkuwdM9wB_H878XExRL425X_Anu',
           title: 'Explore NFT Drop',
           button: {
             href: 'https://drop-demo.liteflow.com/',
